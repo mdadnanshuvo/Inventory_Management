@@ -1,0 +1,49 @@
+
+services:
+  web:  # Django app service
+    build: .
+    container_name: django_app
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app  # This mounts the current directory (your project folder) to /app inside the container
+    ports:
+      - "8000:8000"  # Bind Django to port 8000
+    depends_on:
+      - db  # Ensure db service is up before running Django
+    networks:
+      - mynetwork
+
+  db:  # PostgreSQL with PostGIS
+    image: postgis/postgis:latest
+    container_name: postgres_postgis
+    environment:
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: mydatabase
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - mynetwork
+
+  pgadmin:  # pgAdmin UI for managing PostgreSQL
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "admin@admin.com"  # Change this to your preferred admin email
+      PGADMIN_DEFAULT_PASSWORD: "admin"          # Change this to your preferred password
+    ports:
+      - "5050:80"  # Bind pgAdmin to port 5050 on your host machine
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    networks:
+      - mynetwork
+
+volumes:
+  postgres_data:
+  pgadmin_data:
+
+networks:
+  mynetwork:
+    driver: bridge
