@@ -1,0 +1,8 @@
+<h1>Property Listings</h1>
+<ul>
+  {% for property in properties %}
+  <li>
+    <a href="{% url 'property_detail' property.id %}">{{ property.title }}</a>
+  </li>
+  {% endfor %}
+</ul>

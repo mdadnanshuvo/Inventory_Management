@@ -1,0 +1,48 @@
+[
+    {
+        "Canada": "ca",
+        "locations": [
+            {
+                "British Columbia": "https://www.xyz.com/location/canada/british-columbia",
+                "sublocations": [
+                    {
+                        "Vancouver": "https://www.xyz.com/location/canada/british-columbia/vancouver"
+                    },
+                    {
+                        "Victoria": "https://www.xyz.com/location/canada/british-columbia/victoria"
+                    }
+                ]
+            },
+            {
+                "Ontario": "https://www.xyz.com/location/canada/ontario"
+            }
+        ]
+    },
+    {
+        "USA": "us",
+        "locations": [
+            {
+                "California": "https://www.xyz.com/location/usa/california",
+                "sublocations": [
+                    {
+                        "Los Angeles": "https://www.xyz.com/location/usa/california/los-angeles"
+                    },
+                    {
+                        "San Francisco": "https://www.xyz.com/location/usa/california/san-francisco"
+                    }
+                ]
+            },
+            {
+                "New York": "https://www.xyz.com/location/usa/new-york",
+                "sublocations": [
+                    {
+                        "Brooklyn": "https://www.xyz.com/location/usa/new-york/brooklyn"
+                    },
+                    {
+                        "Manhattan": "https://www.xyz.com/location/usa/new-york/manhattan"
+                    }
+                ]
+            }
+        ]
+    }
+]
