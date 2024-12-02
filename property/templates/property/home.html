@@ -1,8 +1,15 @@
 <h1>Property Listings</h1>
+
+{% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+      <li class="alert alert-success">{{ message }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
+
 <ul>
   {% for property in properties %}
-  <li>
-    <a href="{% url 'property_detail' property.id %}">{{ property.title }}</a>
-  </li>
+    <li>{{ property.title }}</li>
   {% endfor %}
 </ul>

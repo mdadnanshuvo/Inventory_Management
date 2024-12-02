@@ -77,39 +77,31 @@ class Accommodation(models.Model):
             models.Index(fields=['published']),
         ]
         ordering = ['-created_at']
-        
+
 # LocalizeAccommodation Model
 class LocalizeAccommodation(models.Model):
     property = models.ForeignKey(Accommodation, on_delete=models.CASCADE)
-    language = models.CharField(max_length=2)  # Language code
+    language = models.CharField(max_length=2)  # Language code (e.g., "en", "fr")
     description = models.TextField()
     policy = models.JSONField(default=dict)  # e.g., {"pet_policy": "value"}
 
     def __str__(self):
         return f"{self.property.title} - {self.language}"
 
-# UserProfile Model
-class UserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    is_property_owner_requested = models.BooleanField(default=False)
-
-    def __str__(self):
-        return self.user.username
-
-# PropertyOwner Model
-class PropertyOwner(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    address = models.TextField(blank=True, null=True)
-    phone_number = models.CharField(max_length=15, blank=True, null=True)
-    approved_on = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return self.user.username
-
-# Signal to Manage PropertyOwner Group
-@receiver(post_save, sender=PropertyOwner)
-def add_to_property_owners_group(sender, instance, created, **kwargs):
+# Signal to Automatically Create Localized Data
+@receiver(post_save, sender=Accommodation)
+def create_localized_accommodation(sender, instance, created, **kwargs):
     if created:
-        group, _ = Group.objects.get_or_create(name='Property Owners')
-        instance.user.groups.add(group)
-        instance.user.save()
+        # Default languages to create localized entries for
+        languages = ['en', 'fr', 'de']  # Extend this list for more languages
+        for lang in languages:
+            LocalizeAccommodation.objects.create(
+                property=instance,
+                language=lang,
+                description=f"Localized description in {lang}",
+                policy={
+                    "pet_policy": "Pets allowed" if lang == 'en' else
+                                  "Animaux autorisés" if lang == 'fr' else
+                                  "Haustiere erlaubt"
+                }
+            )

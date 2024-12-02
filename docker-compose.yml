@@ -2,7 +2,7 @@
 services:
   web:  # Django app service
     build: .
-    container_name: django_app
+    container_name: django_app1
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/app  # This mounts the current directory (your project folder) to /app inside the container
@@ -15,7 +15,7 @@ services:
 
   db:  # PostgreSQL with PostGIS
     image: postgis/postgis:latest
-    container_name: postgres_postgis
+    container_name: postgres_postgis1
     environment:
       POSTGRES_USER: myuser
       POSTGRES_PASSWORD: mypassword
@@ -29,7 +29,7 @@ services:
 
   pgadmin:  # pgAdmin UI for managing PostgreSQL
     image: dpage/pgadmin4
-    container_name: pgadmin
+    container_name: pgadmin1
     environment:
       PGADMIN_DEFAULT_EMAIL: "admin@admin.com"  # Change this to your preferred admin email
       PGADMIN_DEFAULT_PASSWORD: "admin"          # Change this to your preferred password

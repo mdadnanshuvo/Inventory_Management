@@ -24,6 +24,9 @@ RUN apt-get update && \
 # Set GDAL version as an environment variable to avoid issues with Django/GDAL binding
 ENV GDAL_VERSION=3.4.1  
 
+ENV GDAL_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu/libgdal.so
+
+
 # Install Python dependencies from requirements.txt
 COPY requirements.txt /app/
 RUN pip install --no-cache-dir -r requirements.txt

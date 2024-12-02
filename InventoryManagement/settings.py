@@ -1,5 +1,9 @@
 from pathlib import Path
 import sys
+from .languages import LANGUAGES  # Adjust the path to where your languages.py is located
+
+
+
 
 # Add the project directory to the path to import config.py
 sys.path.append('.')  # This will allow you to import the config.py file from the current directory
@@ -16,6 +20,8 @@ DEBUG = DEBUG
 
 # ALLOWED_HOSTS
 ALLOWED_HOSTS = ALLOWED_HOSTS
+
+
 
 # Application definition
 INSTALLED_APPS = [
@@ -36,8 +42,15 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.locale.LocaleMiddleware',  # This middleware should be included
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+
+USE_I18N = True  # This enables Django's internationalization system
+
+LANGUAGE_CODE = 'en'  # Default language code for your site, can be overridden by users
+
 
 ROOT_URLCONF = 'InventoryManagement.urls'
 
@@ -95,6 +108,9 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = 'static/'
+MEDIA_URL = '/media/'
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+GDAL_LIBRARY_PATH = '/usr/lib/x86_64-linux-gnu/libgdal.so'
