@@ -1,0 +1,5 @@
+location,location_title,country_code,location_type,center,published,title,bedroom_count,review_score,usd_rate,images,amenities,feed
+US,United States,US,continent,"40.7128,-74.0060",True,Cozy Apartment,2,4.5,150.00,"['image1.jpg', 'image2.jpg']","['Wifi', 'Pool', 'Parking']",0
+TX,Dallas,US,state,"34.0522,-118.2437",False,Beachfront Condo,3,4.8,200.00,"['image3.jpg', 'image4.jpg']","['Wifi', 'Ocean View', 'Air Conditioning']",1
+NY,New York,US,state,"51.5074,-0.1278",True,City Center Flat,1,5.0,120.00,"['image5.jpg', 'image6.jpg']","['Wifi', 'Elevator']",0
+CA,San Francisco,US,state,"48.8566,2.3522",True,Modern Studio,1,4.2,180.00,"['image7.jpg', 'image8.jpg']","['Wifi', 'Heater']",1

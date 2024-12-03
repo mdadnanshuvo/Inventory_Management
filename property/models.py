@@ -5,6 +5,10 @@ from django.dispatch import receiver
 from django.contrib.gis.db import models as geomodels
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.core.exceptions import ValidationError
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from django.conf import settings
+from django.utils.translation import gettext as _
 
 # Validators
 def validate_country_code(value):
@@ -78,30 +82,40 @@ class Accommodation(models.Model):
         ]
         ordering = ['-created_at']
 
+
 # LocalizeAccommodation Model
 class LocalizeAccommodation(models.Model):
     property = models.ForeignKey(Accommodation, on_delete=models.CASCADE)
-    language = models.CharField(max_length=2)  # Language code (e.g., "en", "fr")
+    language = models.CharField(max_length=2)
     description = models.TextField()
-    policy = models.JSONField(default=dict)  # e.g., {"pet_policy": "value"}
+    policy = models.JSONField(default=dict)
 
     def __str__(self):
         return f"{self.property.title} - {self.language}"
 
-# Signal to Automatically Create Localized Data
+
+# Signal to Automatically Create Localized Entries for New Accommodations
 @receiver(post_save, sender=Accommodation)
 def create_localized_accommodation(sender, instance, created, **kwargs):
     if created:
-        # Default languages to create localized entries for
-        languages = ['en', 'fr', 'de']  # Extend this list for more languages
-        for lang in languages:
+        # Dynamically fetch available languages from settings
+        languages = settings.LANGUAGES  # e.g., [('en', 'English'), ('fr', 'French'), ...]
+
+        for lang_tuple in languages:
+            lang_code = lang_tuple[0]  # e.g., 'en', 'fr'
+
+            # Automatically translate description and policy using Django's translation system
+            description_translation = _("Localized description for {lang}").format(lang=lang_code)
+
+            # Policy translation is automatically handled
+            policy_translation = {
+                "pet_policy": _("Pets allowed")
+            }
+
+            # Create LocalizeAccommodation entry
             LocalizeAccommodation.objects.create(
                 property=instance,
-                language=lang,
-                description=f"Localized description in {lang}",
-                policy={
-                    "pet_policy": "Pets allowed" if lang == 'en' else
-                                  "Animaux autorisés" if lang == 'fr' else
-                                  "Haustiere erlaubt"
-                }
+                language=lang_code,
+                description=description_translation,
+                policy=policy_translation
             )

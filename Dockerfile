@@ -19,7 +19,9 @@ RUN apt-get update && \
     python3-dev \
     libproj-dev \
     libgeos-dev \
+    gettext \
     && rm -rf /var/lib/apt/lists/*
+
 
 # Set GDAL version as an environment variable to avoid issues with Django/GDAL binding
 ENV GDAL_VERSION=3.4.1  

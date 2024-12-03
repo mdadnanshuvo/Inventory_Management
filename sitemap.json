@@ -1,26 +1,69 @@
 [
     {
-        "Canada": "ca",
+        "Alberta": "ca",
+        "locations": []
+    },
+    {
+        "British Columbia": "ca",
         "locations": [
             {
-                "Ontario": "https://www.xyz.com/location/canada/ontario",
-                "sublocations": [
-                    {
-                        "Toronto": "https://www.xyz.com/location/canada/ontario/toronto"
-                    }
-                ]
+                "city": "https://www.xyz.com/location/british-columbia/city"
+            }
+        ]
+    },
+    {
+        "Canada": "us",
+        "locations": []
+    },
+    {
+        "Florida": "us",
+        "locations": []
+    },
+    {
+        "Mexico": "us",
+        "locations": []
+    },
+    {
+        "New York": "us",
+        "locations": [
+            {
+                "city": "https://www.xyz.com/location/new-york/city"
+            },
+            {
+                "city": "https://www.xyz.com/location/new-york/city"
+            },
+            {
+                "city": "https://www.xyz.com/location/new-york/city"
+            },
+            {
+                "city": "https://www.xyz.com/location/new-york/city"
+            }
+        ]
+    },
+    {
+        "Ontario": "ca",
+        "locations": []
+    },
+    {
+        "Quebec": "ca",
+        "locations": []
+    },
+    {
+        "Texas": "us",
+        "locations": [
+            {
+                "city": "https://www.xyz.com/location/texas/city"
+            },
+            {
+                "city": "https://www.xyz.com/location/texas/city"
+            },
+            {
+                "city": "https://www.xyz.com/location/texas/city"
             }
         ]
     },
     {
         "United States": "us",
-        "locations": [
-            {
-                "California": "https://www.xyz.com/location/united-states/california"
-            },
-            {
-                "New York": "https://www.xyz.com/location/united-states/new-york"
-            }
-        ]
+        "locations": []
     }
 ]

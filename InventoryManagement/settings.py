@@ -1,6 +1,6 @@
 from pathlib import Path
 import sys
-from .languages import LANGUAGES  # Adjust the path to where your languages.py is located
+from .languages import languages  # Adjust the path to where your languages.py is located
 
 
 
@@ -105,6 +105,7 @@ LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
+LANGUAGES = languages  # Use the LANGUAGES dictionary from languages.py
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = 'static/'
