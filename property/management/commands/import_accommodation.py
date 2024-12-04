@@ -1,3 +1,4 @@
+from django.core.exceptions import PermissionDenied
 import csv
 import json
 from django.core.management.base import BaseCommand
@@ -5,6 +6,7 @@ from django.contrib.auth.models import User
 from property.models import Accommodation, Location
 from django.contrib.gis.geos import Point
 from django.core.exceptions import ValidationError
+
 
 class Command(BaseCommand):
     help = 'Import accommodations from a CSV file'
@@ -28,6 +30,16 @@ class Command(BaseCommand):
                 return
         except User.DoesNotExist:
             self.stdout.write(self.style.ERROR('User not found'))
+            return
+
+        # Ensure the user is a staff member and a property owner
+        if not user.is_staff:
+            self.stdout.write(self.style.ERROR('User is not a staff member. Only staff members can import data.'))
+            return
+        
+        # Check if the user is a property owner (assuming this is defined by a custom field or group)
+        if not user.groups.filter(name='Property Owners').exists():  # Assuming there's a 'Property Owners' group
+            self.stdout.write(self.style.ERROR('User is not a property owner. Only property owners can import data.'))
             return
 
         # Open the CSV file
@@ -125,4 +137,5 @@ class Command(BaseCommand):
                     self.stdout.write(self.style.SUCCESS(f"Successfully added accommodation: {accommodation.title}"))
 
                 except Exception as e:
-                    self.stdout.write(self.style.SUCCESS(f"Successfully added accommodation: {accommodation.title}"))
+                    self.stdout.write(self.style.ERROR(f"Error adding accommodation: {e}. Skipping this entry."))
+                    continue
