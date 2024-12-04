@@ -39,7 +39,7 @@ class UniqueLocationFilter(admin.SimpleListFilter):
 class AccommodationAdmin(LeafletGeoAdmin):  # Extend LeafletGeoAdmin
     list_display = ('title', 'usd_rate', 'review_score', 'bedroom_count', 'location', 'published', 'created_at')
     search_fields = ('title', 'location__title', 'country_code')
-    list_filter = ('published', 'country_code', UniqueLocationFilter, 'feed')
+    list_filter = ('published', 'country_code', 'feed')  # Updated filter
     actions = ['show_partitioned_by_feed']
 
     def get_form(self, request, obj=None, **kwargs):
@@ -78,8 +78,14 @@ class AccommodationAdmin(LeafletGeoAdmin):  # Extend LeafletGeoAdmin
         return super().has_delete_permission(request, obj)
 
     def save_model(self, request, obj, form, change):
+        # Validate country_code length before saving
+        if len(obj.country_code) != 2:
+            raise ValidationError("Country code must be exactly 2 characters.")
+        
+        # Automatically assign the logged-in user if not a superuser and no user is set
         if not request.user.is_superuser and not obj.pk:
             obj.user = request.user
+        
         super().save_model(request, obj, form, change)
 
     def show_partitioned_by_feed(self, request, queryset):

@@ -38,7 +38,7 @@ class Location(models.Model):
         'self', null=True, blank=True, on_delete=models.CASCADE
     )  # Hierarchical location nesting
     location_type = models.CharField(max_length=20)  # e.g., continent, country, state, city
-    country_code = models.CharField(max_length=2, validators=[validate_country_code])
+    country_code = models.CharField(max_length=2)
     state_abbr = models.CharField(max_length=3, blank=True, null=True)
     city = models.CharField(max_length=30, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
