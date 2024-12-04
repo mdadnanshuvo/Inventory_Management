@@ -5,13 +5,11 @@ from django.contrib.auth.decorators import login_required
 from .forms import AccommodationForm
 from .models import  Accommodation
 
-
-
-@login_required
+# Home page for listing properties
 def home(request):
     properties = Accommodation.objects.all()
     return render(request, 'property/home.html', {'properties': properties})
-
+  
 
 # User sign-up request page
 def property_owner_signup(request):
