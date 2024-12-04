@@ -3,3 +3,12 @@ US,United States,US,continent,"40.7128,-74.0060",True,Cozy Apartment,2,4.5,150.0
 TX,Dallas,US,state,"34.0522,-118.2437",False,Beachfront Condo,3,4.8,200.00,"['image3.jpg', 'image4.jpg']","['Wifi', 'Ocean View', 'Air Conditioning']",1
 NY,New York,US,state,"51.5074,-0.1278",True,City Center Flat,1,5.0,120.00,"['image5.jpg', 'image6.jpg']","['Wifi', 'Elevator']",0
 CA,San Francisco,US,state,"48.8566,2.3522",True,Modern Studio,1,4.2,180.00,"['image7.jpg', 'image8.jpg']","['Wifi', 'Heater']",1
+FL,Miami,US,state,"25.7617,-80.1918",True,Luxury Ocean View,2,4.9,250.00,"['image9.jpg', 'image10.jpg']","['Wifi', 'Ocean View', 'Jacuzzi']",0
+IL,Chicago,US,state,"41.8781,-87.6298",False,Urban Loft,1,4.3,130.00,"['image11.jpg', 'image12.jpg']","['Wifi', 'Gym']",1
+WA,Seattle,US,state,"47.6062,-122.3321",True,Cozy Cabin,2,4.7,170.00,"['image13.jpg', 'image14.jpg']","['Wifi', 'Fireplace']",0
+MA,Boston,US,state,"42.3601,-71.0589",True,Modern Penthouse,3,4.6,220.00,"['image15.jpg', 'image16.jpg']","['Wifi', 'City View', 'Heater']",1
+NV,Las Vegas,US,state,"36.1699,-115.1398",True,Desert Mirage,4,4.4,300.00,"['image17.jpg', 'image18.jpg']","['Wifi', 'Pool', 'Casino']",0
+CO,Denver,US,state,"39.7392,-104.9903",True,Mountain Retreat,3,5.0,350.00,"['image19.jpg', 'image20.jpg']","['Wifi', 'Ski Resort', 'Mountain View']",1
+PA,Pennsylvania,US,state,"40.7128,-75.0060",False,Country Villa,4,4.1,180.00,"['image21.jpg', 'image22.jpg']","['Wifi', 'Garden']",0
+LA,Los Angeles,US,state,"34.0522,-118.2437",True,Skyline Apartment,2,4.8,230.00,"['image23.jpg', 'image24.jpg']","['Wifi', 'Pool', 'Parking']",1
+OR,Portland,US,state,"45.5051,-122.6750",True,Green House,1,4.5,160.00,"['image25.jpg', 'image26.jpg']","['Wifi', 'Garden', 'Bicycles']",0

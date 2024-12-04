@@ -27,10 +27,7 @@ services:
     networks:
       - mynetwork
   
-  # Define volumes to persist data
-volumes:
-  postgres_data:
-    driver: local
+
 
   pgadmin:  # pgAdmin UI for managing PostgreSQL
     image: dpage/pgadmin4

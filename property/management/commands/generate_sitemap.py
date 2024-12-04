@@ -3,11 +3,14 @@ from django.utils.text import slugify
 import json
 from property.models import Location
 
-
 class Command(BaseCommand):
     help = "Generate a sitemap.json for all country locations"
 
     def handle(self, *args, **kwargs):
+        """
+        Handles the generation of the sitemap.json file by building a location hierarchy
+        and writing it to a file.
+        """
         # Recursive function to build the location hierarchy
         def build_location_hierarchy(locations, parent=None):
             hierarchy = []
@@ -17,10 +20,11 @@ class Command(BaseCommand):
                     [slugify(ancestor.title) for ancestor in get_ancestors(location)]
                 )
                 # Add current location and its nested sublocations
-                location_data = {
-                    location.title: f"https://www.xyz.com/location/{slug}"
-                }
                 sublocations = build_location_hierarchy(locations, parent=location)
+                location_data = {
+                    "name": location.title,
+                    "slug": f"https://www.xyz.com/location/{slug}",
+                }
                 if sublocations:
                     location_data["sublocations"] = sublocations
                 hierarchy.append(location_data)
@@ -30,29 +34,24 @@ class Command(BaseCommand):
         def get_ancestors(location):
             ancestors = []
             while location:
-                ancestors.insert(0, location)
+                ancestors.insert(0, location)  # Insert at the beginning to maintain order
                 location = location.parent
             return ancestors
 
-        # Query all locations
+        # Query all locations and fetch related parent information
         locations = Location.objects.select_related("parent")
 
         # Group locations by top-level countries
-        countries = []
-        for location in locations.filter(parent__isnull=True):  # Top-level countries
-            country_name = location.title
-            country_code = slugify(location.country_code)
-            country_data = {
-                country_name: country_code,
-                "locations": build_location_hierarchy(locations, parent=location),
-            }
-            countries.append(country_data)
+        sitemap = []
+        for location in locations.filter(parent__isnull=True).order_by("title"):
+            sitemap.append({
+                "name": location.title,
+                "slug": f"https://www.xyz.com/location/{slugify(location.title)}",
+                "sublocations": build_location_hierarchy(locations, parent=location)
+            })
 
-        # Sort countries alphabetically
-        sitemap = sorted(countries, key=lambda x: list(x.keys())[0].lower())
-
-        # Write to sitemap.json
-        with open("sitemap.json", "w") as f:
-            json.dump(sitemap, f, indent=4)
+        # Write the sitemap to a JSON file
+        with open("sitemap.json", "w", encoding="utf-8") as f:
+            json.dump(sitemap, f, indent=4, ensure_ascii=False)
 
         self.stdout.write(self.style.SUCCESS("Successfully generated sitemap.json"))

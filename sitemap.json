@@ -1,69 +1,141 @@
 [
     {
-        "Alberta": "ca",
-        "locations": []
+        "name": "Alberta",
+        "slug": "https://www.xyz.com/location/alberta",
+        "sublocations": []
     },
     {
-        "British Columbia": "ca",
-        "locations": [
+        "name": "Boston",
+        "slug": "https://www.xyz.com/location/boston",
+        "sublocations": []
+    },
+    {
+        "name": "British Columbia",
+        "slug": "https://www.xyz.com/location/british-columbia",
+        "sublocations": [
             {
-                "city": "https://www.xyz.com/location/british-columbia/city"
+                "name": "Canada",
+                "slug": "https://www.xyz.com/location/british-columbia/canada"
             }
         ]
     },
     {
-        "Canada": "us",
-        "locations": []
-    },
-    {
-        "Florida": "us",
-        "locations": []
-    },
-    {
-        "Mexico": "us",
-        "locations": []
-    },
-    {
-        "New York": "us",
-        "locations": [
+        "name": "Canada",
+        "slug": "https://www.xyz.com/location/canada",
+        "sublocations": [
             {
-                "city": "https://www.xyz.com/location/new-york/city"
+                "name": "United States",
+                "slug": "https://www.xyz.com/location/canada/united-states"
             },
             {
-                "city": "https://www.xyz.com/location/new-york/city"
+                "name": "United States",
+                "slug": "https://www.xyz.com/location/canada/united-states"
             },
             {
-                "city": "https://www.xyz.com/location/new-york/city"
-            },
-            {
-                "city": "https://www.xyz.com/location/new-york/city"
+                "name": "United States",
+                "slug": "https://www.xyz.com/location/canada/united-states"
             }
         ]
     },
     {
-        "Ontario": "ca",
-        "locations": []
+        "name": "Chicago",
+        "slug": "https://www.xyz.com/location/chicago",
+        "sublocations": []
     },
     {
-        "Quebec": "ca",
-        "locations": []
+        "name": "Denver",
+        "slug": "https://www.xyz.com/location/denver",
+        "sublocations": []
     },
     {
-        "Texas": "us",
-        "locations": [
+        "name": "Florida",
+        "slug": "https://www.xyz.com/location/florida",
+        "sublocations": []
+    },
+    {
+        "name": "Las Vegas",
+        "slug": "https://www.xyz.com/location/las-vegas",
+        "sublocations": []
+    },
+    {
+        "name": "Los Angeles",
+        "slug": "https://www.xyz.com/location/los-angeles",
+        "sublocations": []
+    },
+    {
+        "name": "Mexico",
+        "slug": "https://www.xyz.com/location/mexico",
+        "sublocations": []
+    },
+    {
+        "name": "New York",
+        "slug": "https://www.xyz.com/location/new-york",
+        "sublocations": [
             {
-                "city": "https://www.xyz.com/location/texas/city"
+                "name": "United States",
+                "slug": "https://www.xyz.com/location/new-york/united-states"
             },
             {
-                "city": "https://www.xyz.com/location/texas/city"
+                "name": "United States",
+                "slug": "https://www.xyz.com/location/new-york/united-states"
             },
             {
-                "city": "https://www.xyz.com/location/texas/city"
+                "name": "United States",
+                "slug": "https://www.xyz.com/location/new-york/united-states"
             }
         ]
     },
     {
-        "United States": "us",
-        "locations": []
+        "name": "Ontario",
+        "slug": "https://www.xyz.com/location/ontario",
+        "sublocations": []
+    },
+    {
+        "name": "Pennsylvania",
+        "slug": "https://www.xyz.com/location/pennsylvania",
+        "sublocations": []
+    },
+    {
+        "name": "Portland",
+        "slug": "https://www.xyz.com/location/portland",
+        "sublocations": []
+    },
+    {
+        "name": "Quebec",
+        "slug": "https://www.xyz.com/location/quebec",
+        "sublocations": []
+    },
+    {
+        "name": "San Francisco",
+        "slug": "https://www.xyz.com/location/san-francisco",
+        "sublocations": []
+    },
+    {
+        "name": "Seattle",
+        "slug": "https://www.xyz.com/location/seattle",
+        "sublocations": []
+    },
+    {
+        "name": "Texas",
+        "slug": "https://www.xyz.com/location/texas",
+        "sublocations": [
+            {
+                "name": "United States",
+                "slug": "https://www.xyz.com/location/texas/united-states"
+            },
+            {
+                "name": "United States",
+                "slug": "https://www.xyz.com/location/texas/united-states"
+            },
+            {
+                "name": "United States",
+                "slug": "https://www.xyz.com/location/texas/united-states"
+            }
+        ]
+    },
+    {
+        "name": "United States",
+        "slug": "https://www.xyz.com/location/united-states",
+        "sublocations": []
     }
 ]
