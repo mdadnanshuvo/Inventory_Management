@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'leaflet',
     'django.contrib.gis',  # Ensure GIS is added to installed apps for PostGIS support
     'property',
     
@@ -47,6 +48,15 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# Default Leaflet configuration for maps
+LEAFLET_CONFIG = {
+    'DEFAULT_CENTER': (0, 0),  # Default map center (latitude, longitude)
+    'DEFAULT_ZOOM': 2,         # Default zoom level
+    'MIN_ZOOM': 1,             # Minimum zoom level
+    'MAX_ZOOM': 18,            # Maximum zoom level
+    'TILES': 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',  # OpenStreetMap tiles
+    'ATTRIBUTION_PREFIX': 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+}
 
 USE_I18N = True  # This enables Django's internationalization system
 

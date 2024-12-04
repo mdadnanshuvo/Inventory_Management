@@ -3,13 +3,20 @@ from django.utils.html import format_html
 from django.db.models import Count
 from .models import Location, Accommodation, LocalizeAccommodation
 from .utils.partition_utils import partition_accommodation_by_feed, partition_localize_accommodation_by_language
+from leaflet.admin import LeafletGeoAdmin  # Import LeafletGeoAdmin
 
-# Location Admin (no change here)
+# Location Admin with Leaflet support
 @admin.register(Location)
-class LocationAdmin(admin.ModelAdmin):
+class LocationAdmin(LeafletGeoAdmin):
     list_display = ('id', 'title', 'location_type', 'country_code', 'state_abbr', 'city', 'created_at', 'updated_at')
     search_fields = ('title', 'country_code', 'state_abbr', 'city')
     list_filter = ('location_type', 'country_code', 'state_abbr')
+
+    # Adding Leaflet Map widget for geolocation fields
+    settings_overrides = {
+        'DEFAULT_CENTER': (0, 0),  # Default map center (latitude, longitude)
+        'DEFAULT_ZOOM': 5,        # Default zoom level
+    }
 
 # Custom Location Filter to avoid duplicate locations in the filter dropdown
 class UniqueLocationFilter(admin.SimpleListFilter):
@@ -27,31 +34,26 @@ class UniqueLocationFilter(admin.SimpleListFilter):
             return queryset.filter(location__id=self.value())
         return queryset
 
-# Accommodation Admin
+# Accommodation Admin with Leaflet for geolocation
 @admin.register(Accommodation)
-class AccommodationAdmin(admin.ModelAdmin):
+class AccommodationAdmin(LeafletGeoAdmin):  # Extend LeafletGeoAdmin
     list_display = ('title', 'usd_rate', 'review_score', 'bedroom_count', 'location', 'published', 'created_at')
-    search_fields = ('title', 'location__title', 'country_code')  # Removed duplicate search fields
-    list_filter = ('published', 'country_code', UniqueLocationFilter, 'feed')  # Add 'feed' filter
+    search_fields = ('title', 'location__title', 'country_code')
+    list_filter = ('published', 'country_code', UniqueLocationFilter, 'feed')
     actions = ['show_partitioned_by_feed']
 
-    # Custom filter for partitioned feeds
-    class FeedFilter(admin.SimpleListFilter):
-        title = 'Feed'
-        parameter_name = 'feed'
-
-        def lookups(self, request, model_admin):
-            # Create a list of available feeds based on the partitioned feed data
-            partitions = partition_accommodation_by_feed()
-            return [(feed, f'Feed {feed}') for feed in partitions.keys()]
-
-        def queryset(self, request, queryset):
-            # Filter accommodations by feed
-            if self.value():
-                return queryset.filter(feed=self.value())
-            return queryset
-
-    list_filter = ('published', 'country_code', UniqueLocationFilter, FeedFilter)  # Use FeedFilter for partitioned feed filtering
+    def get_form(self, request, obj=None, **kwargs):
+        """
+        Customize the admin form based on the user's role.
+        - Superusers can see and edit the 'user' field.
+        - Property owners won't see the 'user' field in the form.
+        """
+        form = super().get_form(request, obj, **kwargs)
+        if not request.user.is_superuser:
+            # Remove the 'user' field for non-superusers
+            if 'user' in form.base_fields:
+                del form.base_fields['user']
+        return form
 
     def get_queryset(self, request):
         queryset = super().get_queryset(request)
@@ -79,15 +81,6 @@ class AccommodationAdmin(admin.ModelAdmin):
         if not request.user.is_superuser and not obj.pk:
             obj.user = request.user
         super().save_model(request, obj, form, change)
-
-    def formfield_for_foreignkey(self, db_field, request, **kwargs):
-        """
-        Hide the 'user' field from Property Owners in the admin panel.
-        Property owners should not be able to see the list of users in the dropdown.
-        """
-        if db_field.name == 'user' and not request.user.is_superuser:
-            kwargs['queryset'] = request.user.__class__.objects.none()  # Return no users for Property Owners
-        return super().formfield_for_foreignkey(db_field, request, **kwargs)
 
     def show_partitioned_by_feed(self, request, queryset):
         """

@@ -1,6 +1,7 @@
 asgiref==3.8.1
 coverage==7.6.8
 Django==5.1.3
+django-leaflet==0.31.0
 exceptiongroup==1.2.2
 GDAL==3.4.1
 iniconfig==2.0.0
