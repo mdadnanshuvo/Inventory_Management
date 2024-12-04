@@ -93,26 +93,24 @@ class LocalizeAccommodation(models.Model):
     def __str__(self):
         return f"{self.property.title} - {self.language}"
 
-
-# Signal to Automatically Create Localized Entries for New Accommodations
 @receiver(post_save, sender=Accommodation)
 def create_localized_accommodation(sender, instance, created, **kwargs):
     if created:
-        # Dynamically fetch available languages from settings
-        languages = settings.LANGUAGES  # e.g., [('en', 'English'), ('fr', 'French'), ...]
+        languages = settings.LANGUAGES  # [('en', 'English'), ('fr', 'French')]
 
         for lang_tuple in languages:
-            lang_code = lang_tuple[0]  # e.g., 'en', 'fr'
+            lang_code = lang_tuple[0]  # e.g., 'en'
 
-            # Automatically translate description and policy using Django's translation system
+            if len(lang_code) != 2:  # Ensure valid length for language code
+                print(f"Invalid language code: {lang_code}")
+                continue
+
             description_translation = _("Localized description for {lang}").format(lang=lang_code)
 
-            # Policy translation is automatically handled
             policy_translation = {
-                "pet_policy": _("Pets allowed")
+                "pet_policy": _("Pets allowed"),
             }
 
-            # Create LocalizeAccommodation entry
             LocalizeAccommodation.objects.create(
                 property=instance,
                 language=lang_code,
