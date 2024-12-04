@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.gis',  # Ensure GIS is added to installed apps for PostGIS support
     'property',
+    
 ]
 
 MIDDLEWARE = [
