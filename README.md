@@ -176,7 +176,7 @@ This entry point is responsible for restoring data, which eliminates the need to
     docker-compose exec django_app1 python manage.py createsuperuser
      ```
 
-    - Apply Database Migrations:
+  - Apply Database Migrations:
        If necessary, apply the database migrations to ensure the database schema is up-to-date:
       
        ```
