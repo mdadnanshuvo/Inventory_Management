@@ -173,7 +173,8 @@ This entry point is responsible for restoring data, which eliminates the need to
       
        ```
        docker-compose exec django_app1 python manage.py makemigrations
-       docker-compose exec django_app1 python manage.py migrate```
+       docker-compose exec django_app1 python manage.py migrate
+       ```
 
     
 
