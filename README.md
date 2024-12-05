@@ -128,13 +128,14 @@ To get started with the project, clone the repository and follow these steps:
       docker-compose down
       ```
 
-5. Docker Entry Point and Data Restoration
+5. Docker Entry Point and Data Restoration:
 
    To ensure that the necessary data is restored and the environment is properly set up each time the container starts, a custom entry point has been configured in the `Dockerfile`. The entry point is specified as follows:
 
-```Dockerfile
-ENTRYPOINT ["/bin/bash", "/app/entrypoint.sh"]
-```
+   
+   ```Dockerfile
+   ENTRYPOINT ["/bin/bash", "/app/entrypoint.sh"]
+
 This entry point is responsible for restoring data, which eliminates the need to manually recreate superuser accounts or groups every time the repository is cloned and containers are run on a new machine.
 
   **Login credentials for signing up as admin or superuser:**
@@ -184,6 +185,8 @@ This entry point is responsible for restoring data, which eliminates the need to
        docker-compose exec django_app1 python manage.py makemigrations
        docker-compose exec django_app1 python manage.py migrate
        ```
+
+       
     
 
 ## User Registration and Admin Approval Process
