@@ -103,18 +103,27 @@ To get started with the project, clone the repository and follow these steps:
 
     - This will start the following services:
       - **Django (Backend)**: Running on `http://localhost:8000`
-      - **PostgreSQL with PostGIS**: Running on `localhost:5432`
+      - **PostgreSQL with PostGIS**
       - **pgAdmin**: Access at `http://localhost:5050`
 
-    - For **pgAdmin**, use the following credentials to log in:
-      - **email**: [admin@admin.com]
-      - **Password**: [admin]
       
     - For the **Django app**, you can access the application by visiting:
       ```bash
       http://localhost:8000
       ```
-   
+      
+
+    - **Visiting pgAdmin**:
+        1. Open your browser and go to [http://localhost:5050](http://localhost:5050).
+        2. Log in to pgAdmin with the following credentials:
+           - **email**: [admin@admin.com]
+           - **Password**: [admin] (or whatever password you’ve set in your `docker-compose.yml` or `.env` file)
+        
+        3. Once logged in, you can add a new PostgreSQL server to manage your database:
+            - **Host**: `postgres_postgis1` (this is the service name of the PostgreSQL container)
+            - **Port**: `5432`
+            - **Username**: [myuser]
+            - **Password**: [mypassword]
 
 4. Stopping the containers:
 
