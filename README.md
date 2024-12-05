@@ -90,12 +90,6 @@ To get started with the project, clone the repository and follow these steps:
 
     - Make sure you have [Docker](https://www.docker.com/) and [Docker Compose](https://docs.docker.com/compose/) installed on your machine.
 
-    - Clone the repository:
-      ```bash
-      git clone https://github.com/mdadnanshuvo/Inventory_Management.git
-      cd Inventory_Management
-      ```
-
     - Build and start the Docker containers:
       ```bash
       docker-compose up --build
