@@ -283,5 +283,13 @@ In this command:
 - `uploads/accommodations.csv` is the **path to the CSV file** containing accommodation data.
 
 
+### 3. Generating Sitemap
 
+To generate a sitemap for your site, follow these steps:
+
+1. Run the following Docker command to generate the sitemap:
+
+   ```bash
+   docker exec -it django_app1 python manage.py generate_sitemap
+   ```
 
