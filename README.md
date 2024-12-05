@@ -248,6 +248,22 @@ After being approved, the user will have access to the following:
 
 By following this process, the application ensures that users can only manage their own accommodations after being approved by the admin.
 
+
+## Importing Data via CLI
+
+In addition to the web interface, you can import data using the Django CLI (Command Line Interface) within your Docker container. The following commands can be used by both **admin** and **property owners**, provided they are authenticated and have the necessary permissions.
+
+### 1. Importing Locations
+
+Both **admins** and **property owners** can import location data using a CSV file. To import locations, follow these steps:
+
+1. Prepare a CSV file containing the location data. For example, the file could be named `locations.csv` and located in the `uploads/` directory of your project.
+
+2. Run the following Docker command to import the locations:
+
+   ```bash
+   docker exec -it django_app1 python manage.py import_location uploads/locations.csv
+   ```
     
 
 ## Notes:
