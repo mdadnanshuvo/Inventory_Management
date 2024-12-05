@@ -119,6 +119,8 @@ To get started with the project, clone the repository and follow these steps:
             - **Username**: [myuser]
             - **Password**: [mypassword]
 
+        
+
 4. Stopping the containers:
 
     - To stop the containers, use the following command:
@@ -126,7 +128,50 @@ To get started with the project, clone the repository and follow these steps:
       docker-compose down
       ```
 
-    - This will stop and remove the containers, but the volumes and data will persist.
+5. Docker Entry Point and Data Restoration
+
+To ensure that the necessary data is restored and the environment is properly set up each time the container starts, a custom entry point has been configured in the `Dockerfile`. The entry point is specified as follows:
+
+```Dockerfile
+ENTRYPOINT ["/bin/bash", "/app/entrypoint.sh"]
+```
+This entry point is responsible for restoring data, which eliminates the need to manually recreate superuser accounts or groups every time the repository is cloned and containers are run on a new machine.
+
+ **Handling Entry Point Failures**
+ In some cases, due to permission issues or other errors, the entry point might fail to run, preventing the restoration of data. If you encounter any problems with the entry point or data restoration, you can manually restart the 
+ application and set it up from scratch by following these steps:
+ 
+ **Steps to Start from Scratch**
+
+   - Remove Existing Containers:
+    If there were issues with the entry point or data restoration, first remove ``` ENTRYPOINT ["/bin/bash", "/app/entrypoint.sh"]``` line from the Dockerfile.
+
+  - Stop all the containers
+      ``` docker-compose down```
+    
+  - Rebuild the containers
+     ``` docker-compose build```
+    
+  - Start the containers
+     ``` docker-compose up```
+
+  - Create the Superuser (If Necessary):
+     After the containers are up, you may need to manually create a Django superuser if the data restoration did not complete successfully. To do this, run:
+    
+     ```docker-compose exec django_app1 python manage.py createsuperuser```
+
+    - Apply Database Migrations:
+       If necessary, apply the database migrations to ensure the database schema is up-to-date:
+      
+       ```docker-compose exec django_app1 python manage.py migrate```
+
+      
+
+
+
+   
+    
+
 
 ## Notes:
 - Ensure your environment variables are set correctly for connecting to the PostgreSQL database (such as `DATABASE_URL`, `DB_USER`, `DB_PASSWORD`).
