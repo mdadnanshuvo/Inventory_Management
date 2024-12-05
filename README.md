@@ -203,8 +203,8 @@ The admin will need to approve the newly registered user and assign them the nec
 1. **Login to the Django Admin Panel**:
    - Visit [http://localhost:8000/admin](http://localhost:8000/admin).
    - Use the admin credentials to log in:
-     - **Username**: `adnanshuvo`
-     - **Password**: `pass4docker`
+     - **Username**: `adnanshuvo` or your given username if you created new superuser
+     - **Password**: `pass4docker` or your given password if you created new superuser
 
 2. **Approve the User**:
    - In the Django Admin panel, navigate to the **Users** section.
@@ -224,7 +224,7 @@ By approving the user as a staff member and adding them to the **Property Owner*
 After being approved, the user will have access to the following:
 
 1. **Login to the Application**:
-   - The user can now log in using their username and password at [http://localhost:8000/login/](http://localhost:8000/admin).
+   - The user can now log in using their username and password at [http://localhost:8000/admin/](http://localhost:8000/admin).
 
 2. **Access Accommodations**:
    - The user can add, view, and edit only their own accommodations. They will not be able to access accommodations added by other users.
