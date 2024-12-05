@@ -151,13 +151,16 @@ This entry point is responsible for restoring data, which eliminates the need to
    - Remove Existing Containers:
     If there were issues with the entry point or data restoration, first remove ``` ENTRYPOINT ["/bin/bash", "/app/entrypoint.sh"]``` line from the Dockerfile.
 
-  - Stop all the containers
+  - Stop all the containers:
+    
       ``` docker-compose down```
     
-  - Rebuild the containers
+  - Rebuild the containers:
+    
      ``` docker-compose build```
     
-  - Start the containers
+  - Start the containers:
+    
      ``` docker-compose up```
 
   - Create the Superuser (If Necessary):
