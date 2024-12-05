@@ -294,3 +294,10 @@ To generate a sitemap for your site, follow these steps:
    docker exec -it django_app1 python manage.py generate_sitemap
    ```
 
+- **Data partitioning** is applied in the Accommodations and LocalizeAccommodations tables. Accommodations are partitioned based on feed count, while LocalizeAccommodations are partitioned based on languages.
+
+- Both partitioning strategies were applied programmatically, with no changes made to the database.
+
+- In the admin panel, the partitioning option can be found in the action dropdown buttons.
+
+- The admin or property owner must select the entities to separate based on the partitioning options.
