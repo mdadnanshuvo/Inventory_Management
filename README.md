@@ -130,7 +130,7 @@ To get started with the project, clone the repository and follow these steps:
 
 5. Docker Entry Point and Data Restoration
 
-To ensure that the necessary data is restored and the environment is properly set up each time the container starts, a custom entry point has been configured in the `Dockerfile`. The entry point is specified as follows:
+   To ensure that the necessary data is restored and the environment is properly set up each time the container starts, a custom entry point has been configured in the `Dockerfile`. The entry point is specified as follows:
 
 ```Dockerfile
 ENTRYPOINT ["/bin/bash", "/app/entrypoint.sh"]
@@ -177,24 +177,15 @@ This entry point is responsible for restoring data, which eliminates the need to
      ```
 
   - Apply Database Migrations:
-       If necessary, apply the database migrations to ensure the database schema is up-to-date:
+
+    If necessary, apply the database migrations to ensure the database schema is up-to-date:
       
        ```
        docker-compose exec django_app1 python manage.py makemigrations
        docker-compose exec django_app1 python manage.py migrate
        ```
-
     
-
     
-
-      
-
-
-
-   
-    
-
 
 ## Notes:
 - Ensure your environment variables are set correctly for connecting to the PostgreSQL database (such as `DATABASE_URL`, `DB_USER`, `DB_PASSWORD`).
