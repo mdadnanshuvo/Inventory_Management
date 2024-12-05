@@ -257,7 +257,7 @@ In addition to the web interface, you can import data using the Django CLI (Comm
 
 Both **admins** and **property owners** can import location data using a CSV file. To import locations, follow these steps:
 
-1. Prepare a CSV file containing the location data. For example, the file could be named `locations.csv` and located in the `uploads/` directory of your project.
+1. Prepare a CSV file containing the location data. Please follow the csv data format that already existed in the uploads folder. Besides, as the csv files are AI generated, there could be some unstructured data. The app will only accept the data that meet the requirements of the model. For example, the file could be named `locations.csv` and located in the `uploads/` directory of your project.
 
 2. Run the following Docker command to import the locations:
 
@@ -265,22 +265,21 @@ Both **admins** and **property owners** can import location data using a CSV fil
    docker exec -it django_app1 python manage.py import_location uploads/locations.csv
    ```
     
+### 2. Importing Accommodations
 
-## Notes:
-- Ensure your environment variables are set correctly for connecting to the PostgreSQL database (such as `DATABASE_URL`, `DB_USER`, `DB_PASSWORD`).
-- If you want to connect the Django app to the PostgreSQL container, use the service name (`postgres_postgis1`) as the hostname in your database settings.
+Authenticated property owners can also import bulk accommodations using a CSV file. To import accommodations, follow these steps:
 
-      
+1. Prepare a CSV file with accommodation data. A sample CSV file (accommodations.csv) is already provided in the uploads/ folder.
 
-4. Set up the database (if applicable):
-    - [Insert database setup instructions, e.g., create the database schema, run migrations]
+Run the following Docker command to import the accommodations:
 
-5. Run the application:
-    - For the backend:
-        ```bash
-        [Insert backend run command, e.g., dotnet run]
-        ```
-    - For the frontend:
-        ```bash
-        [Insert frontend run command, e.g., npm start]
-        ```
+```bash
+   docker exec -it django_app1 python manage.py import_accommodation hridoy robu12345 uploads/accommodations.csv
+   ```
+In this command:
+
+-hridoy is the property owner's username.
+-robu12345 is the property owner's password.
+-uploads/accommodations.csv is the path to the CSV file containing accommodation data.
+
+
