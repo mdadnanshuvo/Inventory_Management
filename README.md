@@ -70,3 +70,76 @@ Inventory_Management/
 ├── requirements.txt
 ├── restore_database.sh
 ├── sitemap.json
+```
+
+## Installation
+
+To get started with the project, clone the repository and follow these steps:
+
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/mdadnanshuvo/Inventory_Management.git
+    ```
+
+2. Navigate to the project directory:
+    ```bash
+    cd Inventory_Management
+    ```
+
+3. Install dependencies and run the application using Docker:
+
+    - Make sure you have [Docker](https://www.docker.com/) and [Docker Compose](https://docs.docker.com/compose/) installed on your machine.
+
+    - Clone the repository:
+      ```bash
+      git clone https://github.com/mdadnanshuvo/Inventory_Management.git
+      cd Inventory_Management
+      ```
+
+    - Build and start the Docker containers:
+      ```bash
+      docker-compose up --build
+      ```
+
+    - This will start the following services:
+      - **Django (Backend)**: Running on `http://localhost:8000`
+      - **PostgreSQL with PostGIS**: Running on `localhost:5432`
+      - **pgAdmin**: Access at `http://localhost:5050`
+
+    - For **pgAdmin**, use the following credentials to log in:
+      - **email**: [admin@admin.com]
+      - **Password**: [admin]
+      
+    - For the **Django app**, you can access the application by visiting:
+      ```bash
+      http://localhost:8000
+      ```
+   
+
+4. Stopping the containers:
+
+    - To stop the containers, use the following command:
+      ```bash
+      docker-compose down
+      ```
+
+    - This will stop and remove the containers, but the volumes and data will persist.
+
+## Notes:
+- Ensure your environment variables are set correctly for connecting to the PostgreSQL database (such as `DATABASE_URL`, `DB_USER`, `DB_PASSWORD`).
+- If you want to connect the Django app to the PostgreSQL container, use the service name (`postgres_postgis1`) as the hostname in your database settings.
+
+      
+
+4. Set up the database (if applicable):
+    - [Insert database setup instructions, e.g., create the database schema, run migrations]
+
+5. Run the application:
+    - For the backend:
+        ```bash
+        [Insert backend run command, e.g., dotnet run]
+        ```
+    - For the frontend:
+        ```bash
+        [Insert frontend run command, e.g., npm start]
+        ```
