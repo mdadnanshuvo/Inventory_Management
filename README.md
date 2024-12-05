@@ -278,9 +278,9 @@ Run the following Docker command to import the accommodations:
    ```
 In this command:
 
--hridoy is the property owner's username.
--robu12345 is the property owner's password.
--uploads/accommodations.csv is the path to the CSV file containing accommodation data.
+- `hridoy` is the **property owner's username**.
+- `robu12345` is the **property owner's password**.
+- `uploads/accommodations.csv` is the **path to the CSV file** containing accommodation data.
 
 
 
