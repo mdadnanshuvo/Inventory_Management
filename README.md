@@ -142,11 +142,10 @@ This entry point is responsible for restoring data, which eliminates the need to
 - **Username**: `adnanshuvo`
 - **Password**: `pass4docker`
 
+### Handling Entry Point Failures
 
- **Handling Entry Point Failures**
- In some cases, due to permission issues or other errors, the entry point might fail to run, preventing the restoration of data. If you encounter any problems with the entry point or data restoration, you can manually restart the 
- application and set it up from scratch by following these steps:
- 
+In some cases, due to permission issues or other errors, the entry point may fail to run, which can prevent the restoration of data. If you encounter any issues with the entry point or data restoration, you can manually restart the application and set it up from scratch by following these steps:
+
  **Steps to Start from Scratch**
 
    - Remove Existing Containers:
@@ -186,7 +185,6 @@ This entry point is responsible for restoring data, which eliminates the need to
        docker-compose exec django_app1 python manage.py migrate
        ```
 
-       
     
 
 ## User Registration and Admin Approval Process
