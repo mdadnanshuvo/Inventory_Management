@@ -153,20 +153,28 @@ This entry point is responsible for restoring data, which eliminates the need to
 
   - Stop all the containers:
     
-      ``` docker-compose down```
+      ```
+    docker-compose down
+      ```
     
   - Rebuild the containers:
     
-     ``` docker-compose build```
+     ```
+    docker-compose build
+     ```
     
   - Start the containers:
     
-     ``` docker-compose up```
+     ```
+    docker-compose up
+     ```
 
   - Create the Superuser (If Necessary):
      After the containers are up, you may need to manually create a Django superuser if the data restoration did not complete successfully. To do this, run:
     
-     ```docker-compose exec django_app1 python manage.py createsuperuser```
+     ```
+    docker-compose exec django_app1 python manage.py createsuperuser
+     ```
 
     - Apply Database Migrations:
        If necessary, apply the database migrations to ensure the database schema is up-to-date:
