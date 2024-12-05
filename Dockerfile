@@ -46,7 +46,7 @@ RUN chmod +x /app/entrypoint.sh
 EXPOSE 8000
 
 # Set the entrypoint for the container
-ENTRYPOINT ["/app/entrypoint.sh"]
+ENTRYPOINT ["/bin/bash", "/app/entrypoint.sh"]
 
 # Set the command to run the Django app
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
