@@ -185,6 +185,69 @@ This entry point is responsible for restoring data, which eliminates the need to
        docker-compose exec django_app1 python manage.py migrate
        ```
     
+
+## User Registration and Admin Approval Process
+
+### 1. User Registration
+
+Users can register by submitting the registration form at the following URL:
+- **Registration Form**: [http://localhost:8000/signup/](http://localhost:8000/signup/)
+
+Once the registration form is submitted, the user’s account will be created, but they will need to be approved by an **admin** to access the system with specific permissions.
+
+### 2. Admin Approval Process
+
+The admin will need to approve the newly registered user and assign them the necessary permissions. Here’s how the admin can approve users:
+
+1. **Login to the Django Admin Panel**:
+   - Visit [http://localhost:8000/admin](http://localhost:8000/admin).
+   - Use the admin credentials to log in:
+     - **Username**: `adnanshuvo`
+     - **Password**: `pass4docker`
+
+2. **Approve the User**:
+   - In the Django Admin panel, navigate to the **Users** section.
+   - Find the newly registered user (who will be in a "pending approval" state).
+   - Click on the user’s name to edit their profile.
+   - **Make the user a Staff member**:
+     - Under the **Permissions** section, check the **Staff status** checkbox. This will grant the user access to the Django Admin interface.
+   
+3. **Assign User to the Property Owner Group**:
+   - In the same user edit page, under **Groups**, select the **Property Owner** group.
+   - Save the changes.
+
+By approving the user as a staff member and adding them to the **Property Owner** group, they will be able to manage their own accommodations.
+
+### 3. User Permissions
+
+After being approved, the user will have access to the following:
+
+1. **Login to the Application**:
+   - The user can now log in using their username and password at [http://localhost:8000/login/](http://localhost:8000/admin/).
+
+2. **Access Accommodations**:
+   - The user can add, view, and edit only their own accommodations. They will not be able to access accommodations added by other users.
+
+3. **Add New Accommodation**:
+   - After logging in, the user can navigate to the **Accommodations** section and click on **Add Accommodation**.
+   - The user can fill in the accommodation details and submit the form. The newly added accommodation will be associated with the user who submitted it.
+
+4. **View and Edit Own Accommodations**:
+   - Users will only see their own accommodations listed in the application.
+   - They can edit the details of their accommodations, but will not be able to edit or view accommodations created by other users.
+
+---
+
+## Important Notes:
+
+- **Admin Role**: The admin has full control over the users and accommodations. They are responsible for approving users and assigning them to the appropriate groups.
+- **Permissions**: Users approved as **staff** and members of the **Property Owner** group will have access to manage only their own accommodations. Admins can override these permissions if necessary.
+- **Security**: Make sure to assign roles and permissions carefully to maintain the integrity and security of the application. Only trusted users should be granted staff permissions.
+
+---
+
+By following this process, the application ensures that users can only manage their own accommodations after being approved by the admin.
+
     
 
 ## Notes:
