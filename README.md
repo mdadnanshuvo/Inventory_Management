@@ -137,9 +137,10 @@ ENTRYPOINT ["/bin/bash", "/app/entrypoint.sh"]
 ```
 This entry point is responsible for restoring data, which eliminates the need to manually recreate superuser accounts or groups every time the repository is cloned and containers are run on a new machine.
 
-  **Login credentials for signing up as admin or superuser:
+  **Login credentials for signing up as admin or superuser:**
      -username : adnanshuvo
- 
+     -password : pass4docker
+     
 
  **Handling Entry Point Failures**
  In some cases, due to permission issues or other errors, the entry point might fail to run, preventing the restoration of data. If you encounter any problems with the entry point or data restoration, you can manually restart the 
@@ -167,7 +168,9 @@ This entry point is responsible for restoring data, which eliminates the need to
     - Apply Database Migrations:
        If necessary, apply the database migrations to ensure the database schema is up-to-date:
       
-       ```docker-compose exec django_app1 python manage.py migrate```
+       ```
+       docker-compose exec django_app1 python manage.py makemigrations
+       docker-compose exec django_app1 python manage.py migrate```
 
     
 
